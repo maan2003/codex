@@ -25,10 +25,10 @@ rec {
   devShell = pkgs.mkShell {
     inherit env;
     name = "codex-rs-dev";
-    packages = monorep-deps ++ [
-      pkgs.cargo
-      package
-    ];
+    packages = monorep-deps ++ (with pkgs; [
+      pkg-config
+      openssl
+    ]);
     shellHook = ''
       echo "Entering development shell for codex-rs"
       alias codex="cd ${package.src}/tui; cargo run; cd -"

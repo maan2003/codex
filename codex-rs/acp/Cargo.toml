@@ -1,0 +1,21 @@
+[package]
+name = "codex-acp"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+agent-client-protocol = { path = "../../../agent-client-protocol" }
+anyhow = "1"
+tokio = { version = "1", features = ["full"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+serde_json = "1"
+codex-protocol = { path = "../protocol" }
+codex-common = { path = "../common", features = ["cli"] }
+codex-core = { path = "../core" }
+tokio-util = { version = "0.7", features = ["compat"] }
+toml = "0.9.5"
+shlex = "1"
+uuid = "1"
+
+[lints]
+workspace = true

@@ -76,6 +76,9 @@ enum Subcommand {
     /// Internal: generate TypeScript protocol bindings.
     #[clap(hide = true)]
     GenerateTs(GenerateTsCommand),
+
+    /// Run the Agent Client Protocol server.
+    Acp,
 }
 
 #[derive(Debug, Parser)]
@@ -211,6 +214,9 @@ async fn cli_main(codex_linux_sandbox_exe: Option<PathBuf>) -> anyhow::Result<()
         }
         Some(Subcommand::GenerateTs(gen_cli)) => {
             codex_protocol_ts::generate_ts(&gen_cli.out_dir, gen_cli.prettier.as_deref())?;
+        }
+        Some(Subcommand::Acp) => {
+            codex_acp::run_main(codex_linux_sandbox_exe, cli.config_overrides).await?;
         }
     }
 
